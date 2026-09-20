@@ -1,10 +1,10 @@
-# 镜像要求挂载点为空；产物与轨迹写在侧目录下，勿提交进初始快照
-workspace/
-traces/
-A/workspace/
-B/workspace/
-A/traces/
-B/traces/
-traces-A/
-traces-B/
 node_modules/
+dist/
+*.log
+.env
+packages/client/.vite/
+coverage/
+.DS_Store
+# 服务端 Yjs 二进制持久化数据
+packages/server/.coedit-data*/
+packages/server/.coedit-*/

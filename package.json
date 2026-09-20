@@ -1,0 +1,23 @@
+{
+  "name": "coedit-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Distributed block-based collaborative editor (Yjs CRDT + NestJS)",
+  "workspaces": [
+    "packages/shared",
+    "packages/block-core",
+    "packages/renderer",
+    "packages/client",
+    "packages/server"
+  ],
+  "scripts": {
+    "build:lib": "npm run build -w @coedit/shared && npm run build -w @coedit/block-core && npm run build -w @coedit/renderer",
+    "dev:server": "npm run build:lib && npm run start:dev -w @coedit/server",
+    "dev:client": "npm run dev -w @coedit/client",
+    "typecheck": "npm run typecheck -w @coedit/shared && npm run typecheck -w @coedit/block-core && npm run typecheck -w @coedit/renderer && npm run typecheck -w @coedit/server",
+    "test:shared": "npm run test -w @coedit/shared"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

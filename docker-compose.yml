@@ -1,0 +1,36 @@
+version: "3.9"
+
+# 本地开发基础设施：PostgreSQL（用户/文档元数据/Yjs 状态）+ Redis（在线状态/光标缓存/跨节点广播）
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: coedit
+      POSTGRES_PASSWORD: coedit
+      POSTGRES_DB: coedit
+    ports:
+      - "5432:5432"
+    volumes:
+      - coedit_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U coedit"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "no"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - coedit_redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  coedit_pg:
+  coedit_redis:

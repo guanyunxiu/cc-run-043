@@ -1,0 +1,26 @@
+{
+  "name": "@coedit/renderer",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./style.css": "./src/style.css"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@coedit/shared": "*",
+    "@coedit/block-core": "*",
+    "yjs": "^13.6.20"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}
